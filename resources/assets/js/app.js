@@ -1,4 +1,4 @@
-Vue.component('header', require('./components/Header.vue'));
+Vue.component('main-app', require('./MainApp.vue'));
 
 const app = new Vue({
     el: '#app'

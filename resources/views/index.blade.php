@@ -10,7 +10,7 @@
 </head>
 <body>
   <div id="app">
-      <example></example>
+      <main-app></main-app>
   </div>
   <script src="{{ 'js/jquery.min.js' }}"></script>
   <script src="{{ 'js/bootstrap.min.js' }}"></script>
