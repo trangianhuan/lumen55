@@ -6,7 +6,7 @@
 
   <title>{{ config('app.name') }}</title>
 
-  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
   <div id="app">
@@ -15,6 +15,7 @@
   <script src="{{ 'js/jquery.min.js' }}"></script>
   <script src="{{ 'js/bootstrap.min.js' }}"></script>
   <script src="{{ 'js/vue.min.js' }}"></script>
+  <script src="{{ 'js/vue-router.min.js' }}"></script>
   <script src="{{ 'js/app.js' }}"></script>
 </body>
 </html>

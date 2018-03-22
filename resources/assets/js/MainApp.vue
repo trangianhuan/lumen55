@@ -1,8 +1,20 @@
 <template lang="html">
-    <header id="header">
-        <h1><a href="#"><img :src="'/img/logo.png' | img" alt="NPChatbot"></a></h1>
-        main
-    </header>
+    <div id="main">
+        <Header />
+        <router-view></router-view>
+    </div>
 </template>
+
 <script>
+    import Header from './components/Header';
+    import Home from './pages/Home';
+    import About from './pages/About';
+    export default {
+      name: 'app',
+      components: { Header, Home, About },
+      data () {
+        return {
+        }
+      }
+    }
 </script>

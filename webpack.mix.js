@@ -18,6 +18,8 @@ mix.js('resources/assets/js/app.js', 'public/js')
    // .copy('resources/assets/images', 'public/images', false)
     .copy('node_modules/jquery/dist/jquery.min.js', 'public/js', false)
     .copy('node_modules/vue/dist/vue.min.js', 'public/js', false)
+    .copy('node_modules/vue-router/dist/vue-router.min.js', 'public/js', false)
+
    // .copy('resources/assets/fonts', 'public/css/fonts', false)
 
    //.sass('resources/assets/sass/admin/admin.scss', 'public/css/admin', false)
