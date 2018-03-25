@@ -19,25 +19,58 @@ $router->get('/', function () use ($router) {
 // $router->get('{path:.*}', function () {
 //     return view('index');
 // });
+$router->group(['prefix' => 'api'], function () use ($router) {
+//     $router->get('/review', function () {
+//     return
+//     [
+//         [
+//             'map'=>'map1',
+//             'comments' => [
+//                 ['id' => 1,'comment' => 'test1'],
+//                 ['id' => 2,'comment' => 'test2'],
+//                 ['id' => 3,'comment' => 'test3']
+//             ]
+//         ],
+//         [
+//             'map'=>'map2',
+//             'comments' => [
+//                 ['id' => 1,'comment' => 'test1 coment 1'],
+//                 ['id' => 2,'comment' => 'test2 coment 2'],
+//                 ['id' => 3,'comment' => 'test3 coment 3']
+//             ]
+//         ]
+//     ];
+// });
 
-$router->get('/review', function () {
-    return
-    [
-        [
-            'map'=>'map1',
-            'comments' => [
-                ['id' => 1,'comment' => 'test1'],
-                ['id' => 2,'comment' => 'test2'],
-                ['id' => 3,'comment' => 'test3']
-            ]
-        ],
-        [
-            'map'=>'map2',
-            'comments' => [
-                ['id' => 1,'comment' => 'test1 coment 1'],
-                ['id' => 2,'comment' => 'test2 coment 2'],
-                ['id' => 3,'comment' => 'test3 coment 3']
-            ]
-        ]
-    ];
+   $router->get('reviews',  ['uses' => 'Api\StoreController@all']);
+
+  // $router->get('authors/{id}', ['uses' => 'AuthorController@showOneAuthor']);
+
+  // $router->post('authors', ['uses' => 'AuthorController@create']);
+
+  // $router->delete('authors/{id}', ['uses' => 'AuthorController@delete']);
+
+  // $router->put('authors/{id}', ['uses' => 'AuthorController@update']);
 });
+
+// $router->get('/review', function () {
+//     return
+//     [
+//         [
+//             'map'=>'map1',
+//             'comments' => [
+//                 ['id' => 1,'comment' => 'test1'],
+//                 ['id' => 2,'comment' => 'test2'],
+//                 ['id' => 3,'comment' => 'test3']
+//             ]
+//         ],
+//         [
+//             'map'=>'map2',
+//             'comments' => [
+//                 ['id' => 1,'comment' => 'test1 coment 1'],
+//                 ['id' => 2,'comment' => 'test2 coment 2'],
+//                 ['id' => 3,'comment' => 'test3 coment 3']
+//             ]
+//         ]
+//     ];
+// });

@@ -1,7 +1,13 @@
 <template>
     <div>
-        <div v-for="review in reviews">
-            <div class="review-map">{{review.comment}}</div>
+        <button class="btn btn-primary" @click="showAdd">Add review place</button>
+        <div id="form-add-rv">
+            <br/>
+            <div class="" id="rv-new-input">
+                <input type="text" name="search" class="form-control col-6" id="searchTextField"/>
+                <input type="text" name="comment" class="form-control col-6" id="comment"/>
+            </div>
+            <Map name="mapadd" search="searchTextField"/>
         </div>
 
         <div class="rv" v-for="review in reviews">
@@ -9,6 +15,7 @@
             {{review.map}}
           </div>
           <div class="rv-comment">
+            <p class="rv-name">{{review.name}}</p>
             <p class="rv-comment-child" v-for="comment in review.comments">
               {{comment.comment}}
             </p>
@@ -26,18 +33,40 @@
 <script>
     import axios from 'axios';
     import Review from './review/Review.vue';
+    import Map from './review/Map.vue';
     export default {
-      components: { Review},
+      components: { Review, Map},
       data () {
         return {
-            reviews: []
+            reviews: [],
+            isShow: false,
         }
       },
       mounted() {
-        axios.get('/review').then(response => {
-        console.log(response.data);
+        axios.get('/api/reviews').then(response => {
             this.reviews = response.data;
         });
+      },
+      methods: {
+        showAdd: function(){
+            this.isShow = !this.isShow;
+            if(this.isShow)
+                $('#form-add-rv').hide();
+            else
+                $('#form-add-rv').show();
+        },
+        createRiview(){
+          axios.post('/user', {
+            map: 'Fred',
+            comment: 'Flintstone'
+          })
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        }
       }
     }
 </script>
@@ -64,7 +93,7 @@
       margin:5px 10px;
       border:1px solid #ddd;
       border-radius:5px;
-      padding:10px;
+      padding:5px 10px;
     }
     .rv-btn-add{
       position: absolute;
@@ -91,5 +120,14 @@
         top: 0;
         right: -13px;
         position: absolute;
+    }
+    .rv-name{
+        font-weight: 600;
+        padding: 5px 10px 0 0;
+        margin: 0 0 15px 10px;
+        text-transform: uppercase;
+    }
+    .map-area{
+        position: relative;
     }
 </style>
