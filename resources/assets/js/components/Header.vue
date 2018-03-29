@@ -13,7 +13,7 @@
         <router-link to="/about" class="nav-link">About</router-link>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
+        <router-link to="/timer" class="nav-link">Timer</router-link>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">

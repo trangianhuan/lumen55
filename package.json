@@ -27,6 +27,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap-sass": "^3.3.7",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vue2-google-maps": "^0.8.11"
   }
 }

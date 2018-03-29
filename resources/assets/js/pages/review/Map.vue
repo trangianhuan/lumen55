@@ -26,7 +26,7 @@
                 //});
                 //marker.setMap(this.map);
                 var that = this;
-                if(true) that.renderSearch();
+                this.renderSearch();
 
         },
         methods:{
