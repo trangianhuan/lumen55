@@ -42,11 +42,11 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 //     ];
 // });
 
-   $router->get('reviews',  ['uses' => 'Api\StoreController@all']);
+   $router->get('stores',  ['uses' => 'Api\StoreController@all']);
 
   // $router->get('authors/{id}', ['uses' => 'AuthorController@showOneAuthor']);
 
-  // $router->post('authors', ['uses' => 'AuthorController@create']);
+   $router->post('stores', ['uses' => 'Api\StoreController@add']);
 
   // $router->delete('authors/{id}', ['uses' => 'AuthorController@delete']);
 

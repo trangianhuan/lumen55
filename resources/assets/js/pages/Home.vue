@@ -1,22 +1,30 @@
 <template>
     <div>
-        <button class="btn btn-primary" @click="showAdd">Add review place</button>
-        <div id="form-add-rv">
+        <button class="btn btn-primary"  @click="showAdd">Add review place</button>
+        <div id="form-add-rv" v-if="isShow">
             <br/>
-            <div class="" id="rv-new-input">
+            <Map name="mapadd" search="searchTextField" @setLocation="loca = $event"/>
+            <div class="p-t-15" id="rv-new-input">
+              <label for="name">Seach location</label>
                 <input type="text" name="search" class="form-control col-6" id="searchTextField"/>
-                <input type="text" name="comment" class="form-control col-6" id="comment"/>
+              <label for="name">Name</label>
+                <input type="text" name="name" class="form-control col-6" v-model="name" id="name"/>
+              <label for="comment">Comment</label>
+                <input type="text" name="comment" class="form-control col-6" v-model="comment" id="comment"/>
+              
+              <button class="btn btn-primary" @click="createReview">Save</button>
             </div>
-            <Map name="mapadd" search="searchTextField"/>
         </div>
 
-        <div class="rv" v-for="review in reviews">
+      <div class="listStore justify-content-center">
+        <div class="rv col-sm-5" v-for="store in stores">
           <div class="rv-map">
-            {{review.map}}
+            <Map :key="store.id" :name="'storeMap' + store.id" :mapLoca="store.map"/>
           </div>
+
           <div class="rv-comment">
-            <p class="rv-name">{{review.name}}</p>
-            <p class="rv-comment-child" v-for="comment in review.comments">
+            <p class="rv-name">{{store.name}}</p>
+            <p class="rv-comment-child" v-for="comment in store.comments">
               {{comment.comment}}
             </p>
           </div>
@@ -27,41 +35,44 @@
             </div>
           </div>
         </div>
-
+      </div>
     </div>
 </template>
 <script>
     import axios from 'axios';
-    import Review from './review/Review.vue';
     import Map from './review/Map.vue';
     export default {
-      components: { Review, Map},
+      components: { Map},
       data () {
         return {
-            reviews: [],
+            stores: [],
             isShow: false,
+            loca:null,
+            name: null,
+            comment: null
         }
       },
       mounted() {
-        axios.get('/api/reviews').then(response => {
-            this.reviews = response.data;
-        });
+        this.getList();
       },
       methods: {
         showAdd: function(){
             this.isShow = !this.isShow;
-            if(this.isShow)
-                $('#form-add-rv').hide();
-            else
-                $('#form-add-rv').show();
         },
-        createRiview(){
-          axios.post('/user', {
-            map: 'Fred',
-            comment: 'Flintstone'
+        getList(){
+          axios.get('/api/stores').then(response => {
+              this.stores = response.data;
+            });
+        },
+        createReview(){
+          var that = this;
+          axios.post('/api/stores', {
+            name: this.name,
+            comment: this.comment,
+            map: this.loca
           })
           .then(function (response) {
-            console.log(response);
+            that.getList();
           })
           .catch(function (error) {
             console.log(error);
@@ -71,6 +82,10 @@
     }
 </script>
 <style lang="scss">
+    .listStore{
+      display:flex;
+      flex-wrap:wrap;
+    }
     .rv{
       position: relative;
       display: flex;
@@ -81,9 +96,8 @@
       box-shadow: 5px 5px 10px gray;
     }
     .rv-map{
-      height: 200px;
-      width: 250px;
-      background-color: #ddd;
+      height: 320px;
+      width: 330px;
       margin: 5px 0px 5px 10px;
     }
     .rv-comment{

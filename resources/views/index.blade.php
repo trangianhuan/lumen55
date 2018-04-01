@@ -7,7 +7,8 @@
   <title>{{ config('app.name') }}</title>
 
   <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="css/fontawesome-all.min.css">
+
   <style type="text/css">
       ::-webkit-scrollbar {
       width: 8px;
@@ -24,8 +25,8 @@
     .some-element::webkit-scrollbar {
     }
     .map{
-        width: 600px;
-        height: 350px;
+        width: 100%;
+        height: 300px;
     }
   </style>
   <script
